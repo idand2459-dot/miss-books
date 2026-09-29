@@ -1,29 +1,42 @@
 import { bookService } from '../services/book.service.js'
 import { BookList } from '../cmps/BookList.jsx'
 import { BookDetails } from '../cmps/BookDetails.jsx'
+import { BookFilter } from '../cmps/BookFilter.jsx'
+import { BookEdit } from '../cmps/BookEdit.jsx'
 
-export function BookIndex(){
-
+export function BookIndex() {
     const [books, setBooks] = React.useState([])
-    const [selectedBook, setSelectedBook] = React.useState(null)
-
-       
+    const [selectedBookId, setSelectedBookId] = React.useState(null)
+    const [filterBy, setFilterBy] = React.useState({ txt: '', minPrice: '' })
+    const [isAdding, setIsAdding] = React.useState(false)
 
     React.useEffect(() => {
-        bookService.query()
-            .then(booksFromStorage => setBooks(booksFromStorage))
-    }, [])
+        loadBooks()
+    }, [filterBy])
 
-return (
-    <section>
-        {selectedBook ? (
-            <BookDetails bookId={selectedBook} onBack={() => setSelectedBook(null)} />
-        ) : (
-            <React.Fragment>
-                <h2>Books:{books.length}</h2>
-                <BookList books={books} onSelectBook={setSelectedBook} />
-            </React.Fragment>
-        )}
-    </section>
-)
+    function loadBooks() {
+        bookService.query(filterBy).then(booksFromStorage => setBooks(booksFromStorage))
+    }
+
+    function onDoneAdding() {
+        setIsAdding(false)
+        loadBooks()
+    }
+
+    if (selectedBookId) {
+        return <BookDetails bookId={selectedBookId} onBack={() => setSelectedBookId(null)} />
+    }
+
+    if (isAdding) {
+        return <BookEdit onDone={onDoneAdding} />
+    }
+
+    return (
+        <section>
+            <h2>Books: {books.length}</h2>
+            <button onClick={() => setIsAdding(true)}>Add Book</button>
+            <BookFilter filterBy={filterBy} onSetFilter={setFilterBy} />
+            <BookList books={books} onSelectBook={setSelectedBookId} />
+        </section>
+    )
 }

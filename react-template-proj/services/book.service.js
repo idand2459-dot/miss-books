@@ -23,8 +23,17 @@ function _createBooks() {
     }
 }
 
-function query() {
-    return asyncStorageService.query(BOOKS_KEY)
+function query(filterBy = {}) {
+    return asyncStorageService.query(BOOKS_KEY).then(books => {
+        if (filterBy.txt) {
+            const txt = filterBy.txt.toLowerCase()
+            books = books.filter(book => book.title.toLowerCase().includes(txt))
+        }
+        if (filterBy.minPrice) {
+            books = books.filter(book => book.listPrice.amount >= +filterBy.minPrice)
+        }
+        return books
+    })
 }
 
 function get(bookId) {
