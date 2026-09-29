@@ -16,19 +16,24 @@ export function BookDetails({ onBack, bookId }) {
 
   function getPublishedDateText(publishedDate) {
     const currentYear = new Date().getFullYear();
-    const publishedYear = new Date(publishedDate).getFullYear();
     const yearsAgo = currentYear - publishedDate;
 
-    if (yearsAgo > 10) return "Veteran Book";
+    if (yearsAgo > 10) return "Vintage";
     if (yearsAgo < 1) return "New!";
     return "";
   }
+
+ function getPriceColor(amount) {
+    if (amount > 150) return "price-red";
+    if (amount < 20) return "price-green";
+    return "";
+}
 
   return (
     <section>
       <button onClick={onBack}>Back</button>
       {book && (
-        <>
+        <React.Fragment>
           <h2>{book.title}</h2>
           <h3>{book.subtitle}</h3>
           <p>{book.description}</p>
@@ -36,11 +41,17 @@ export function BookDetails({ onBack, bookId }) {
           <p>Categories: {book.categories.join(", ")}</p>
           <p>Published: {book.publishedDate}</p>
           <p>Pages: {book.pageCount}</p>
-          <p> Price: {book.listPrice.amount} {book.listPrice.currencyCode} </p>
+          <p>
+             Price:
+             <span className={getPriceColor(book.listPrice.amount)}>
+             {book.listPrice.amount} {book.listPrice.currencyCode}
+             </span>
+             {book.listPrice.isOnSale && <span className="on-sale"> On Sale!</span>}
+              </p>
           <p>{getPageCountText(book.pageCount)}</p>
           <p>{getPublishedDateText(book.publishedDate)}</p>
           <img src={book.thumbnail} alt={book.title} />
-        </>
+        </React.Fragment>
       )}
     </section>
   );

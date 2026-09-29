@@ -1,0 +1,13 @@
+.price-red { 
+    color: red; }
+
+
+.price-green {
+     color: green; }
+
+.on-sale {
+    background-color: gold;
+    font-weight: bold;
+    padding: 2px 4px;
+    border-radius: 4px;
+}     
