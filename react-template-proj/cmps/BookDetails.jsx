@@ -1,4 +1,5 @@
 import { bookService } from "../services/book.service.js";
+import { LongTxt } from "./LongTxt.jsx";    
 export function BookDetails({ onBack, bookId }) {
   const [book, setBook] = React.useState(null);
 
@@ -29,6 +30,8 @@ export function BookDetails({ onBack, bookId }) {
     return "";
 }
 
+
+
   return (
     <section>
       <button onClick={onBack}>Back</button>
@@ -36,7 +39,7 @@ export function BookDetails({ onBack, bookId }) {
         <React.Fragment>
           <h2>{book.title}</h2>
           <h3>{book.subtitle}</h3>
-          <p>{book.description}</p>
+          <LongTxt text={book.description}  />
           <p>Author: {book.authors.join(", ")}</p>
           <p>Categories: {book.categories.join(", ")}</p>
           <p>Published: {book.publishedDate}</p>
