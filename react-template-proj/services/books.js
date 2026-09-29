@@ -1,6 +1,6 @@
 
 
-const books = [
+export const books = [
     {
         "id": "OXeMG8wNskc",
         "title": "metus hendrerit",

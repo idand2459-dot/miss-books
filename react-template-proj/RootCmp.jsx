@@ -1,6 +1,7 @@
 import { Home } from "./pages/Home.jsx"
 import { BookIndex } from "./pages/BookIndex.jsx"
 import { AboutUs } from "./pages/AboutUs.jsx"
+import { bookService } from './services/book.service.js'
 
 export function App() {
 
