@@ -32,28 +32,38 @@ export function BookDetails({ onBack, bookId }) {
 
 
 
-  return (
-    <section>
-      <button onClick={onBack}>Back</button>
+   return (
+    <section className="book-details">
       {book && (
         <React.Fragment>
-          <h2>{book.title}</h2>
-          <h3>{book.subtitle}</h3>
-          <LongTxt text={book.description}  />
-          <p>Author: {book.authors.join(", ")}</p>
-          <p>Categories: {book.categories.join(", ")}</p>
-          <p>Published: {book.publishedDate}</p>
-          <p>Pages: {book.pageCount}</p>
-          <p>
-             Price:
-             <span className={getPriceColor(book.listPrice.amount)}>
-             {book.listPrice.amount} {book.listPrice.currencyCode}
-             </span>
-             {book.listPrice.isOnSale && <span className="on-sale"> On Sale!</span>}
+          <header className="details-header">
+            <h2>{book.title}</h2>
+            <h3>{book.subtitle}</h3>
+          </header>
+
+          <div className="details-body">
+            <div className="details-img">
+              <img src={book.thumbnail} alt={book.title} />
+              {book.listPrice.isOnSale && <span className="on-sale">On Sale!</span>}
+            </div>
+
+            <div className="details-info">
+              <p>Published: {book.publishedDate} {getPublishedDateText(book.publishedDate)}</p>
+              <p>Author: {book.authors.join(", ")}</p>
+              <p>Categories: {book.categories.join(", ")}</p>
+              <p>Pages: {book.pageCount} {getPageCountText(book.pageCount)}</p>
+              <p>
+                Price:{" "}
+                <span className={getPriceColor(book.listPrice.amount)}>
+                  {book.listPrice.amount} {book.listPrice.currencyCode}
+                </span>
               </p>
-          <p>{getPageCountText(book.pageCount)}</p>
-          <p>{getPublishedDateText(book.publishedDate)}</p>
-          <img src={book.thumbnail} alt={book.title} />
+
+              <button onClick={onBack}>Back</button>
+
+              <LongTxt txt={book.description} />
+            </div>
+          </div>
         </React.Fragment>
       )}
     </section>

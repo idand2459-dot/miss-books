@@ -1,5 +1,6 @@
 export function LongTxt({ txt, length = 100 }) {
     const [isExpanded, setIsExpanded] = React.useState(false)
+    if (!txt) return null
     if(isExpanded) 
         return <p>{txt} <button onClick={() => setIsExpanded(false)}>Read Less</button></p>
     if(txt.length <= length) 

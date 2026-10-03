@@ -1,13 +1,63 @@
-.price-red { 
-    color: red; }
-
+.price-red {
+    color: red;
+}
 
 .price-green {
-     color: green; }
+    color: green;
+}
 
-.on-sale {
+
+.book-details {
+    max-width: 700px;
+    margin: 0 auto;
+    border: 1px solid var(--gray2);
+    border-radius: 6px;
+    background-color: var(--clr1bg);
+    overflow: hidden;
+}
+
+
+.details-header {
+    background-color: var(--gray3);
+    color: var(--gray1);
+    text-align: center;
+    padding: 0.5em 1em;
+}
+
+.details-header h2,
+.details-header h3 {
+    margin: 0.2em 0;
+}
+
+
+.details-body {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+
+.details-img {
+    position: relative;
+    max-width: 220px;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+
+.details-img .on-sale {
+    position: absolute;
+    top: 20px;
+    left: -40px;
+    width: 150px;
+    transform: rotate(-45deg);
     background-color: gold;
+    color: black;
+    text-align: center;
     font-weight: bold;
-    padding: 2px 4px;
-    border-radius: 4px;
-}     
+    padding: 4px 0;
+}
+
+.details-info p {
+    margin: 0.3em 0;
+}
