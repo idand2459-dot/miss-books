@@ -11,17 +11,22 @@ export function BookFilter({ filterBy, onSetFilter }) {
 
     return (
         <section className="book-filter">
+            <label htmlFor="txt">Title:</label>
             <input
                 type="text"
+                id="txt"
                 name="txt"
-                placeholder="Search by title"
+                placeholder="Search by title..."
                 value={filterByToEdit.txt}
                 onChange={handleChange}
             />
+
+            <label htmlFor="minPrice">Min price:</label>
             <input
                 type="number"
+                id="minPrice"
                 name="minPrice"
-                placeholder="Min price"
+                placeholder="0"
                 value={filterByToEdit.minPrice}
                 onChange={handleChange}
             />

@@ -1,0 +1,8 @@
+.book-filter {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    background-color: var(--clr1bg);
+}
