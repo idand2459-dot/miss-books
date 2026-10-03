@@ -25,3 +25,5 @@ export function App() {
         </section>
     )
 }
+
+window.bookService = bookService

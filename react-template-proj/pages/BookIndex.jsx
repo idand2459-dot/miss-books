@@ -23,6 +23,13 @@ export function BookIndex() {
         loadBooks()
     }
 
+     function onRemoveBook(bookId) {
+        bookService.remove(bookId).then(() => {
+            setBooks(prevBooks => prevBooks.filter(book => book.id !== bookId))
+        })
+    }
+
+
     if (selectedBookId) {
         return <BookDetails bookId={selectedBookId} onBack={() => setSelectedBookId(null)} />
     }
@@ -31,12 +38,13 @@ export function BookIndex() {
         return <BookEdit onDone={onDoneAdding} />
     }
 
+   
     return (
         <section>
             <h2>Books: {books.length}</h2>
             <button onClick={() => setIsAdding(true)}>Add Book</button>
             <BookFilter filterBy={filterBy} onSetFilter={setFilterBy} />
-            <BookList books={books} onSelectBook={setSelectedBookId} />
+            <BookList books={books} onSelectBook={setSelectedBookId} onRemoveBook={onRemoveBook} />
         </section>
     )
 }
