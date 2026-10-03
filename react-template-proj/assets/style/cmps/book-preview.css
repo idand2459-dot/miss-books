@@ -1,7 +1,16 @@
+
 .book-preview {
     border: 1px solid var(--gray2);
     padding: 1rem;
     border-radius: 5px;
     background-color: var(--gray1);
     text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.book-preview .actions {
+    display: flex;
+    justify-content: center;
+    margin-top: auto;
 }
