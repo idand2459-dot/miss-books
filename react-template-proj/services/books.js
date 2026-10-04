@@ -1,5 +1,3 @@
-
-
 export const books = [
     {
         "id": "OXeMG8wNskc",
@@ -147,7 +145,7 @@ export const books = [
             "Computers",
             "Hack"
         ],
-        "thumbnail": "assets/BooksImages/14.jpg",
+        "thumbnail": "assets/BooksImages/4.jpg",
         "language": "he",
         "listPrice": {
             "amount": 90,
@@ -235,7 +233,7 @@ export const books = [
             "Computers",
             "Hack"
         ],
-        "thumbnail": "assets/BooksImages/16.jpg",
+        "thumbnail": "assets/BooksImages/9.jpg",
         "language": "sp",
         "listPrice": {
             "amount": 157,
@@ -367,7 +365,7 @@ export const books = [
             "Computers",
             "Hack"
         ],
-        "thumbnail": "assets/BooksImages/10.jpg",
+        "thumbnail": "assets/BooksImages/13.jpg",
         "language": "en",
         "listPrice": {
             "amount": 118,
@@ -389,7 +387,7 @@ export const books = [
             "Computers",
             "Hack"
         ],
-        "thumbnail": "assets/BooksImages/12.jpg",
+        "thumbnail": "assets/BooksImages/15.jpg",
         "language": "he",
         "listPrice": {
             "amount": 60,
@@ -411,7 +409,7 @@ export const books = [
             "Computers",
             "Hack"
         ],
-        "thumbnail": "assets/BooksImages/20.jpg",
+        "thumbnail": "assets/BooksImages/18.jpg",
         "language": "he",
         "listPrice": {
             "amount": 110,
@@ -433,7 +431,7 @@ export const books = [
             "Computers",
             "Hack"
         ],
-        "thumbnail": "assets/BooksImages/2.jpg",
+        "thumbnail": "assets/BooksImages/19.jpg",
         "language": "sp",
         "listPrice": {
             "amount": 186,
