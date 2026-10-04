@@ -1,15 +1,17 @@
 import { bookService } from "../services/book.service.js";
-import { LongTxt } from "../cmps/LongTxt.jsx";  
+import { LongTxt } from "../cmps/LongTxt.jsx";
+import { AddReview } from "../cmps/AddReview.jsx";
+import { showSuccessMsg } from "../services/event-bus.service.js";
 
 const { useParams, Link } = ReactRouterDOM;
+
 export function BookDetails() {
-  
   const { bookId } = useParams();
   const [book, setBook] = React.useState(null);
 
   React.useEffect(() => {
     bookService.get(bookId)
-    .then((bookFromStorage) => setBook(bookFromStorage));
+      .then((bookFromStorage) => setBook(bookFromStorage));
   }, [bookId]);
 
   function getPageCountText(pageCount) {
@@ -28,15 +30,21 @@ export function BookDetails() {
     return "";
   }
 
- function getPriceColor(amount) {
+  function getPriceColor(amount) {
     if (amount > 150) return "price-red";
     if (amount < 20) return "price-green";
     return "";
-}
+  }
 
+  function onAddReview(review) {
+    bookService.addReview(bookId, review)
+      .then((updatedBook) => {
+        setBook(updatedBook);
+        showSuccessMsg("Review added successfully");
+      });
+  }
 
-
-   return (
+  return (
     <section className="book-details">
       {book && (
         <React.Fragment>
@@ -64,10 +72,19 @@ export function BookDetails() {
               </p>
 
               <Link to="/book" className="back-link">Back to list</Link>
-            
-          
 
               <LongTxt txt={book.description} />
+              <AddReview onAddReview={onAddReview} />
+              <ul className="reviews-list">
+                {book.reviews && book.reviews.map((review) => (
+                  <li key={review.id}> 
+                    <p><strong>{review.fullname}</strong></p>
+                    <p>Rating: {review.rating}/5</p>
+                    <p>Read at: {review.readAt}</p>
+                    <p>{review.txt}</p>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </React.Fragment>
