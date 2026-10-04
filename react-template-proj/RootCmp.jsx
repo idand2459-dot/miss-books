@@ -3,26 +3,25 @@ import { BookIndex } from "./pages/BookIndex.jsx"
 import { AboutUs } from "./pages/AboutUs.jsx"
 import { bookService } from './services/book.service.js'
 
+const Router = ReactRouterDOM.HashRouter
+const { Routes, Route } = ReactRouterDOM
+
 export function App() {
-
-    const [page, setPage] = React.useState('home')
-
     return (
-        <section className="app">
-            <header className="app-header main-layout">
-                <h1>Miss Books</h1>
-                <nav>
-                    <button onClick={() => setPage('home')}>Home</button>
-                    <button onClick={() => setPage('books')}>Books</button>
-                    <button onClick={() => setPage('about')}>About Us</button>
-                </nav>
-            </header>
-            <main className="main-layout">
-                {page === 'home' && <Home />}
-                {page === 'books' && <BookIndex />}
-                {page === 'about' && <AboutUs />}
-            </main>
-        </section>
+        <Router>
+            <section className="app">
+                <header className="app-header main-layout">
+                    <h1>Miss Books</h1>
+                </header>
+                <main className="main-layout">
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/book" element={<BookIndex />} />
+                        <Route path="/about" element={<AboutUs />} />
+                    </Routes>
+                </main>
+            </section>
+        </Router>
     )
 }
 
