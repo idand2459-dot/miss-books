@@ -1,4 +1,5 @@
 import { bookService } from '../services/book.service.js'
+import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 const { useNavigate } = ReactRouterDOM
 export function BookEdit() {
     const [title, setTitle] = React.useState('')
@@ -20,9 +21,13 @@ export function BookEdit() {
             listPrice: { amount: +price, currencyCode: 'EUR', isOnSale: false }
         }
         bookService.save(book).then(() => {
-            
             navigate('/book')
+            showSuccessMsg('Book added')
+            
         })
+        .catch(err => {
+            showErrorMsg('Cannot add book')
+        })          
     }
 
     return (
