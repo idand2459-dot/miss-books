@@ -1,12 +1,14 @@
 import { asyncStorageService } from './async-storage.service.js'
 import { storageService } from './storage.service.js'
 import { books } from './books.js'
+import { utilService } from './util.service.js'
 
 export const bookService = {
     query,
     get,
     remove,
-    save
+    save,
+    addReview,
 
 }
   
@@ -51,3 +53,13 @@ function save(book) {
         return asyncStorageService.post(BOOKS_KEY, book)
     }
 }
+
+function addReview(bookId, review) {
+    return get(bookId).then(book => {
+        review.id = utilService.makeId()
+        review.createAt = Date.now()            
+        if (!book.reviews) book.reviews = []
+        book.reviews.push(review)
+        return save(book)
+    }) 
+}        
