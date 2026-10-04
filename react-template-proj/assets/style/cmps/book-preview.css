@@ -14,3 +14,12 @@
     justify-content: center;
     margin-top: auto;
 }
+
+.details-link {
+    text-decoration: none;
+    color: var(--clr1);
+    font-weight: bold;
+    margin-right: 1rem;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+}

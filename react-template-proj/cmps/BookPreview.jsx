@@ -1,4 +1,6 @@
-export function BookPreview({ book, onSelectBook, onRemoveBook }) {
+const { Link } = ReactRouterDOM;
+
+export function BookPreview({ book, onRemoveBook }) {
     return (
         <article className="book-preview">
             <h3>{book.title}</h3>
@@ -6,7 +8,7 @@ export function BookPreview({ book, onSelectBook, onRemoveBook }) {
              <p>Author: {book.authors.join(', ')}</p>
             <p>{book.listPrice.amount.toLocaleString('en', { style: 'currency', currency: book.listPrice.currencyCode })}</p>
             <div className="actions">
-                <button onClick={() => onSelectBook(book.id)}>Details</button>
+                <Link to={`/book/${book.id}`} className="details-link">Details</Link>
                 <button onClick={() => onRemoveBook(book.id)}>Remove</button>
             </div>
         </article>
