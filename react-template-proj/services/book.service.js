@@ -41,6 +41,7 @@ function query(filterBy = {}) {
 
 function get(bookId) {
     return asyncStorageService.get(BOOKS_KEY, bookId)
+        .then(book => _setNextPrevBookId(book))
 }
 
 function remove(bookId) {
@@ -74,4 +75,17 @@ function removeReview(bookId, reviewId) {
         }
          return save(book)
     })  
+}
+
+function _setNextPrevBookId(book) {
+   return query().then(books => {
+    const idx = books.findIndex(currBook => currBook.id === book.id)
+
+    const nextBook=  books[idx + 1] ? books[idx + 1] : books[0]
+    const prevBook = books[idx - 1] ? books[idx - 1] : books[books.length - 1]
+
+    book.nextReviewId = nextBook.id
+    book.prevReviewId = prevBook.id
+    return book
+    })
 }

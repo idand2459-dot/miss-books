@@ -80,6 +80,9 @@ export function BookDetails() {
               </p>
 
               <Link to="/book" className="back-link">Back to list</Link>
+              <Link to={`/book/${book.prevBookId}`} className="prev-link">Previous Book</Link>
+              <Link to={`/book/${book.nextBookId}`} className="next-link">Next Book</Link>
+            
 
               <LongTxt txt={book.description} />
               <AddReview onAddReview={onAddReview} />
