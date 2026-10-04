@@ -44,6 +44,14 @@ export function BookDetails() {
       });
   }
 
+  function onRemoveReview(reviewId) {
+    bookService.removeReview(bookId, reviewId)
+      .then((updatedBook) => {  
+        setBook(updatedBook);
+        showSuccessMsg("Review removed successfully");
+      });
+  }
+
   return (
     <section className="book-details">
       {book && (
@@ -78,13 +86,15 @@ export function BookDetails() {
               <ul className="reviews-list">
                 {book.reviews && book.reviews.map((review) => (
                   <li key={review.id}> 
-                    <p><strong>{review.fullname}</strong></p>
+                    <p><strong>{review.fullname} </strong></p>
                     <p>Rating: {review.rating}/5</p>
                     <p>Read at: {review.readAt}</p>
                     <p>{review.txt}</p>
+                    <button onClick={() => onRemoveReview(review.id)}>Remove Review</button>
                   </li>
                 ))}
               </ul>
+              
             </div>
           </div>
         </React.Fragment>

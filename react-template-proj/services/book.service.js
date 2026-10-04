@@ -9,6 +9,7 @@ export const bookService = {
     remove,
     save,
     addReview,
+    removeReview,
 
 }
   
@@ -63,3 +64,14 @@ function addReview(bookId, review) {
         return save(book)
     }) 
 }        
+
+function removeReview(bookId, reviewId) {
+    return get(bookId).then(book => {
+        const reviewIdx = book.reviews.findIndex(review => review.id === reviewId)
+        if (reviewIdx !== -1) {
+            book.reviews.splice(reviewIdx, 1)
+           
+        }
+         return save(book)
+    })  
+}
