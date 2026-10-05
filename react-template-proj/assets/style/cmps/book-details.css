@@ -9,7 +9,7 @@
 
 .book-details {
     max-width: 700px;
-    margin: 0 auto;
+    margin: 1.5rem auto;
     border: 1px solid var(--gray2);
     border-radius: 6px;
     background-color: var(--clr1bg);
@@ -60,4 +60,42 @@
 
 .details-info p {
     margin: 0.3em 0;
+}
+
+.details-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.details-reviews {
+    padding: 1rem;
+    border-top: 1px solid var(--gray2);
+}
+
+.add-review {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-width: 350px;
+    margin-bottom: 1rem;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+.add-review h4 {
+    margin: 0;
+}
+
+.reviews-list li {
+    margin-bottom: 0.5rem;
+    padding: 0.75rem;
+    border: 1px solid var(--gray2);
+    border-radius: 4px;
+    background-color: white;
+}
+
+.reviews-list p {
+    margin: 0.2em 0;
 }

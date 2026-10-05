@@ -10,8 +10,7 @@ export function BookDetails() {
   const [book, setBook] = React.useState(null);
 
   React.useEffect(() => {
-    bookService.get(bookId)
-      .then((bookFromStorage) => setBook(bookFromStorage));
+    bookService.get(bookId).then((bookFromStorage) => setBook(bookFromStorage));
   }, [bookId]);
 
   function getPageCountText(pageCount) {
@@ -37,19 +36,17 @@ export function BookDetails() {
   }
 
   function onAddReview(review) {
-    bookService.addReview(bookId, review)
-      .then((updatedBook) => {
-        setBook(updatedBook);
-        showSuccessMsg("Review added successfully");
-      });
+    bookService.addReview(bookId, review).then((updatedBook) => {
+      setBook(updatedBook);
+      showSuccessMsg("Review added successfully");
+    });
   }
 
   function onRemoveReview(reviewId) {
-    bookService.removeReview(bookId, reviewId)
-      .then((updatedBook) => {  
-        setBook(updatedBook);
-        showSuccessMsg("Review removed successfully");
-      });
+    bookService.removeReview(bookId, reviewId).then((updatedBook) => {
+      setBook(updatedBook);
+      showSuccessMsg("Review removed successfully");
+    });
   }
 
   return (
@@ -64,42 +61,63 @@ export function BookDetails() {
           <div className="details-body">
             <div className="details-img">
               <img src={book.thumbnail} alt={book.title} />
-              {book.listPrice.isOnSale && <span className="on-sale">On Sale!</span>}
+              {book.listPrice.isOnSale && (
+                <span className="on-sale">On Sale!</span>
+              )}
             </div>
 
             <div className="details-info">
-              <p>Published: {book.publishedDate} {getPublishedDateText(book.publishedDate)}</p>
+              <p>
+                Published: {book.publishedDate}{" "}
+                {getPublishedDateText(book.publishedDate)}
+              </p>
               <p>Author: {book.authors.join(", ")}</p>
               <p>Categories: {book.categories.join(", ")}</p>
-              <p>Pages: {book.pageCount} {getPageCountText(book.pageCount)}</p>
+              <p>
+                Pages: {book.pageCount} {getPageCountText(book.pageCount)}
+              </p>
               <p>
                 Price:{" "}
                 <span className={getPriceColor(book.listPrice.amount)}>
                   {book.listPrice.amount} {book.listPrice.currencyCode}
                 </span>
               </p>
-
-              <Link to="/book" className="back-link">Back to list</Link>
-              <Link to={`/book/${book.prevBookId}`} className="prev-link">Previous Book</Link>
-              <Link to={`/book/${book.nextBookId}`} className="next-link">Next Book</Link>
-            
+              <nav className="details-nav">
+                <Link to={`/book/${book.prevBookId}`} className="prev-link btn">
+                  Previous Book
+                </Link>
+                <Link to="/book" className="back-link btn">
+                  Back to list
+                </Link>
+                <Link to={`/book/${book.nextBookId}`} className="next-link btn">
+                  Next Book
+                </Link>
+              </nav>
 
               <LongTxt txt={book.description} />
-              <AddReview onAddReview={onAddReview} />
-              <ul className="reviews-list">
-                {book.reviews && book.reviews.map((review) => (
-                  <li key={review.id}> 
-                    <p><strong>{review.fullname} </strong></p>
+            </div>
+          </div>
+
+          <section className="details-reviews">
+            <h3>Reviews</h3>
+            <AddReview onAddReview={onAddReview} />
+            <ul className="reviews-list clean-list">
+              {book.reviews &&
+                book.reviews.map((review) => (
+                  <li key={review.id}>
+                    <p>
+                      <strong>{review.fullname} </strong>
+                    </p>
                     <p>Rating: {review.rating}/5</p>
                     <p>Read at: {review.readAt}</p>
                     <p>{review.txt}</p>
-                    <button onClick={() => onRemoveReview(review.id)}>Remove Review</button>
+                    <button onClick={() => onRemoveReview(review.id)}>
+                      Remove Review
+                    </button>
                   </li>
                 ))}
-              </ul>
-              
-            </div>
-          </div>
+            </ul>
+          </section>
         </React.Fragment>
       )}
     </section>

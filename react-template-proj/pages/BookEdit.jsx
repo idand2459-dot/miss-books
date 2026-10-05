@@ -31,7 +31,7 @@ export function BookEdit() {
     }
 
     return (
-        <form onSubmit={onSave}>
+        <form className='book-edit' onSubmit={onSave}>
             <h2>Add Book</h2>
             <input type="text" placeholder="Title" value={title}
                 onChange={ev => setTitle(ev.target.value)} />
