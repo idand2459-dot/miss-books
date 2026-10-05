@@ -53,6 +53,11 @@ function query(txt) {
         .then(res => res.json())
         .then(data => {
             if (data.error) throw new Error(data.error.message)
-            return data.items
+            return data.items||[]
         })
-}
+
+        .catch(err => {
+            console.log('Google Api Failed, using demo data', err.message)
+            return demoData.items
+        })  
+    }
