@@ -10,6 +10,7 @@ export const bookService = {
     save,
     addReview,
     removeReview,
+    addGoogleBook
 
 }
   
@@ -84,8 +85,32 @@ function _setNextPrevBookId(book) {
     const nextBook=  books[idx + 1] ? books[idx + 1] : books[0]
     const prevBook = books[idx - 1] ? books[idx - 1] : books[books.length - 1]
 
-    book.nextReviewId = nextBook.id
-    book.prevReviewId = prevBook.id
+    book.nextBookId = nextBook.id
+    book.prevBookId = prevBook.id
     return book
+    })
+}
+
+function addGoogleBook(item) {
+    return query().then(books => {
+        const isExists = books.some(book => book.googleId === item.id)
+        if (isExists) {
+            throw new Error('Book already exists in the library')
+        }
+
+        const book = {
+            title: item.title,
+            subtitle: '',
+            authors: ['Unknown'],
+            publishedDate: new Date().getFullYear(),
+            description: 'No description yet',
+            pageCount: 100,
+            categories: ['General'],
+            thumbnail: 'assets/BooksImages/1.jpg',
+            language: 'en',
+            listPrice: { amount: 100, currencyCode: 'EUR', isOnSale: false },
+            googleId: item.id
+        }
+        return save(book)
     })
 }

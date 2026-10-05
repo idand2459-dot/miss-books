@@ -35,6 +35,7 @@ export function BookIndex() {
         <section>
             <h2>Books: {books.length}</h2>
             <Link to="/book/edit">Add Book</Link>
+            <Link to="/book/add">Add Book from Google</Link>
             <BookFilter filterBy={filterBy} onSetFilter={setFilterBy} />
             <BookList books={books}  onRemoveBook={onRemoveBook} />
         </section>
