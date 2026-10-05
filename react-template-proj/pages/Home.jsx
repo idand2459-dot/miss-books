@@ -11,7 +11,7 @@ export function Home() {
         })
     }
     return (
-        <section>
+        <section className="home">
             <h2 ref={h1Ref}>Welcome To Our Books Store</h2>
             <img ref={imgRef} src="assets/BooksImages/1.jpg" alt="book" />
             <button onClick={onActive}>Activate Animation</button>
