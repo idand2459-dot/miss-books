@@ -10,6 +10,9 @@ export function BookPreview({ book, onRemoveBook }) {
             <div className="actions">
                 <Link to={`/book/${book.id}`} className="btn">
                     <i className="fa fa-info-circle"></i> Details</Link>
+                    <Link to={`/book/edit/${book.id}`} className="btn">
+                        <i className="fa fa-pencil"></i> Edit
+                    </Link>
                 <button onClick={() => onRemoveBook(book.id)} className="btn">
                     <i className="fa fa-trash"></i> Remove</button>
             </div>
