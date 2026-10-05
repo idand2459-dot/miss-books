@@ -98,18 +98,19 @@ function addGoogleBook(item) {
             throw new Error('Book already exists in the library')
         }
 
+        const info = item.volumeInfo
         const book = {
-            title: item.title,
-            subtitle: '',
-            authors: ['Unknown'],
-            publishedDate: new Date().getFullYear(),
-            description: 'No description yet',
-            pageCount: 100,
-            categories: ['General'],
-            thumbnail: 'assets/BooksImages/1.jpg',
-            language: 'en',
-            listPrice: { amount: 100, currencyCode: 'EUR', isOnSale: false },
-            googleId: item.id
+            googleId: item.id,
+            title: info.title,
+            subtitle: info.subtitle || '',
+            authors: info.authors || ['Unknown'],
+            publishedDate: parseInt(info.publishedDate) || new Date().getFullYear(),
+            description: info.description || 'No description yet',
+            pageCount: info.pageCount || 100,
+            categories: info.categories || ['General'],
+            thumbnail: (info.imageLinks && info.imageLinks.thumbnail) || 'assets/BooksImages/1.jpg',
+            language: info.language || 'en',
+            listPrice: { amount: 100, currencyCode: 'EUR', isOnSale: false }
         }
         return save(book)
     })
