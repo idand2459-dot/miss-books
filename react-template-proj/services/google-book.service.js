@@ -46,7 +46,13 @@ const demoData = {
     ]
 }
 
-function query() {
-    return Promise.resolve(demoData.items)
-        
+function query(txt) {
+    const url = `https://www.googleapis.com/books/v1/volumes?printType=books&q=${txt}`
+
+    return fetch(url)
+        .then(res => res.json())
+        .then(data => {
+            if (data.error) throw new Error(data.error.message)
+            return data.items
+        })
 }
