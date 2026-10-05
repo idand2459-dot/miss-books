@@ -84,13 +84,13 @@ export function BookDetails() {
               </p>
               <nav className="details-nav">
                 <Link to={`/book/${book.prevBookId}`} className="prev-link btn">
-                  Previous Book
+                  <i className="fa fa-arrow-left"></i> Previous Book
                 </Link>
                 <Link to="/book" className="back-link btn">
                   Back to list
                 </Link>
                 <Link to={`/book/${book.nextBookId}`} className="next-link btn">
-                  Next Book
+                 <i className="fa fa-arrow-right"></i> Next Book
                 </Link>
               </nav>
 
