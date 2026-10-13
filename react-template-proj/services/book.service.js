@@ -10,7 +10,8 @@ export const bookService = {
     save,
     addReview,
     removeReview,
-    addGoogleBook
+    addGoogleBook,
+    getFilterFromSearchParams,  
 
 }
   
@@ -114,4 +115,12 @@ function addGoogleBook(item) {
         }
         return save(book)
     })
+
+    
 }
+
+function getFilterFromSearchParams(searchParams) {
+        const txt = searchParams.get('txt') || ''
+        const minPrice = searchParams.get('minPrice') || ''
+        return { txt, minPrice }
+    }
