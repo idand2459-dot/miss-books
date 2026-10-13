@@ -1,7 +1,7 @@
 .chart {
     display: table;
     table-layout: fixed;
-    width: 60%;
+    width: 90%;
     max-width: 700px;
     height: 200px;
     margin: 0 auto;
@@ -22,7 +22,9 @@
 .chart span {
     margin: 0 1em;
     display: block;
-    background: rgba(209, 236, 250, 0.75);
+    background: var(--clr1);
+    color: white;
+    padding-top: 0.3em;
     animation: draw 1s ease-in-out;
     font-size: .8em;
 }
@@ -36,6 +38,7 @@
     display: block;
     text-align: center;
     content: attr(title);
+    color: var(--gray3);
     word-wrap: break-word;
 }
 

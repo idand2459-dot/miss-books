@@ -1,0 +1,23 @@
+.dashboard {
+    max-width: 700px;
+    margin: 1.5rem auto;
+    padding: 1.5rem 1.5rem 3rem;
+    border: 1px solid var(--gray2);
+    border-radius: 6px;
+    background-color: var(--clr1bg);
+    text-align: center;
+}
+
+.dashboard h2 {
+    margin-block: 0 0.25rem;
+}
+
+.dashboard h3 {
+    margin-block: 0 1.5rem;
+    font-weight: normal;
+    color: var(--gray3);
+}
+
+.dashboard h4 {
+    margin-block: 0 1.5rem;
+}
