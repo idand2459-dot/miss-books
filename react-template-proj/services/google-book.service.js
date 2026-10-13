@@ -2,6 +2,7 @@ export const googleBookService = {
     query
 }
 
+const API_KEY = 'AIzaSyBXazoOECPHFbbcbgLcNCfdSE0nv1ruC2k'
 const demoData = {
     items: [
         {
@@ -47,7 +48,7 @@ const demoData = {
 }
 
 function query(txt) {
-    const url = `https://www.googleapis.com/books/v1/volumes?printType=books&q=${txt}`
+    const url = `https://www.googleapis.com/books/v1/volumes?printType=books&q=${txt}&key=${API_KEY}`
 
     return fetch(url)
         .then(res => res.json())
