@@ -9,6 +9,7 @@ import { UserMsg } from "./cmps/UserMsg.jsx"
 import { AboutTeam } from "./cmps/AboutTeam.jsx"
 import { AboutGoal } from "./cmps/AboutGoal.jsx"
 import { bookService } from "./services/book.service.js"
+import { Dashboard } from "./pages/Dashboard.jsx"
 
 const Router = ReactRouterDOM.HashRouter
 const { Routes, Route } = ReactRouterDOM
@@ -33,6 +34,7 @@ export function App() {
                         <Route path="/book/edit" element={<BookEdit />} />
                         <Route path="/book/edit/:bookId" element={<BookEdit />} />
                         <Route path="/book/:bookId" element={<BookDetails />} />
+                        <Route path="/dashboard" element={<Dashboard />} />
                     </Routes>
                     <UserMsg />
                 </main>

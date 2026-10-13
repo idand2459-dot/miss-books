@@ -12,6 +12,8 @@ export const bookService = {
     removeReview,
     addGoogleBook,
     getFilterFromSearchParams,  
+    getCategoryStats,
+    getBookCountByCategoryMap,
 
 }
   
@@ -124,3 +126,23 @@ function getFilterFromSearchParams(searchParams) {
         const minPrice = searchParams.get('minPrice') || ''
         return { txt, minPrice }
     }
+
+ function getBookCountByCategoryMap(books) {
+  return books.reduce((acc, book) => {
+        book.categories.forEach(category => {
+            if (!acc[category]) acc[category] = 0
+            acc[category]++
+        })
+        return acc
+    }, {})
+}
+
+function getCategoryStats() {
+    return query().then(books => {
+        const countMap = getBookCountByCategoryMap(books)
+        return Object.keys(countMap).map(category => ({
+            title: category,
+            value: Math.round((countMap[category] / books.length) * 100)
+        }))
+    })
+}
